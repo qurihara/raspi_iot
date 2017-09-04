@@ -9,7 +9,17 @@ board.on("ready", function() {
   var led = new five.Led("P1-13");
   led.blink();
 
-  var servo = new five.Servo(12);
+  // var servo = new five.Servo(12);
+  var servo = new five.Servo({
+        id: "coin_servo",
+        pin: 'P1-12',
+        type: "standard",
+        range: [-180,180],
+        fps:100,
+        invert: false,
+        startAt: 00,
+        center: true,
+        });
 
   milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
   ds = milkcocoa.dataStore('messages');
@@ -19,7 +29,8 @@ board.on("ready", function() {
     // servo.sweep();
   });
 
-  // ds.send({title : 'command', content : 'servo.sweep();'});
+  // ds.send({title : 'command', content : 'servo.to(0);'});// initial
+  // ds.send({title : 'command', content : 'servo.to(-160);'});// push
 
   function send(str){
         ds.send({title : 'id', content : name});
