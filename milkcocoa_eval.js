@@ -29,7 +29,7 @@ board.on("ready", function() {
   milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
   ds = milkcocoa.dataStore('messages');
   ds.on('send', function(sended) {
-    console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
+    // console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
     eval(sended.value.content);
     // servo.sweep();
   });
@@ -39,7 +39,7 @@ board.on("ready", function() {
 
   function send(str){
         ds.send({title : 'id', content : name});
-        console.log("sent.");
+        // console.log("sent.");
   }
   send(name);
 
@@ -58,11 +58,11 @@ board.on("ready", function() {
   */
 
   // Add servo to REPL (optional)
-  // this.repl.inject({
-  //   servo: servo,
-  //   led: led,
-  //   relay: relay
-  // });
+  this.repl.inject({
+    servo: servo,
+    led: led,
+    relay: relay
+  });
 
 
   // Servo API
