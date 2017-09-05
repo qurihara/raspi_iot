@@ -26,27 +26,30 @@ board.on("ready", function() {
 
   var relay = new five.Relay('P1-16');
 
-  milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
-  ds = milkcocoa.dataStore('messages');
-  ds.on('send', function(sended) {
-    // console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
-    if (sended.value.title === name){
-      try{
-        eval(sended.value.content);        
-      }catch(e){
-
+  var listen = function(){
+    milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
+    ds = milkcocoa.dataStore('messages');
+    ds.on('send', function(sended) {
+      // console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
+      if (sended.value.title === name){
+        try{
+          eval(sended.value.content);
+        }catch(e){
+        }
       }
+    });    
+    function send(str){
+          ds.send({title : 'id', content : name});
+          // console.log("sent.");
     }
-  });
+    send(name);
+  }
 
   // ds.send({title : 'command', content : 'servo.to(0);'});// initial
   // ds.send({title : 'command', content : 'servo.to(-160);'});// push
 
-  function send(str){
-        ds.send({title : 'id', content : name});
-        // console.log("sent.");
-  }
-  send(name);
+
+  setTimeout(listen, 60000);
 
   // Servo alternate constructor with options
   /*
