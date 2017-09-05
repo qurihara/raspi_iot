@@ -10,7 +10,6 @@ var board = new five.Board({
 board.on("ready", function() {
   // P13 LED blink
   var led = new five.Led("P1-13");
-  led.on();//.blink();
 
   // var servo = new five.Servo(12);
   var servo = new five.Servo({
@@ -27,6 +26,7 @@ board.on("ready", function() {
   var relay = new five.Relay('P1-16');
 
   var listen = function(){
+    led.on();//.blink();
     milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
     ds = milkcocoa.dataStore('messages');
     ds.on('send', function(sended) {
@@ -37,7 +37,7 @@ board.on("ready", function() {
         }catch(e){
         }
       }
-    });    
+    });
     function send(str){
           ds.send({title : 'id', content : name});
           // console.log("sent.");
