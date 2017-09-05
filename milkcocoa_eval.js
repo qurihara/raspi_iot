@@ -53,7 +53,7 @@ board.on("ready", function() {
   // ds.send({title : 'command', content : 'servo.to(-160);'});// push
 
 
-  setTimeout(listen, 150000);
+  setTimeout(listen, 15000);
 
   // Servo alternate constructor with options
   /*
