@@ -21,6 +21,8 @@ board.on("ready", function() {
         center: true,
         });
 
+  var relay = new five.Relay('P1-16');
+
   milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
   ds = milkcocoa.dataStore('messages');
   ds.on('send', function(sended) {
@@ -54,7 +56,9 @@ board.on("ready", function() {
 
   // Add servo to REPL (optional)
   this.repl.inject({
-    servo: servo
+    servo: servo,
+    led: led,
+    relay: relay
   });
 
 
