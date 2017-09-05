@@ -30,8 +30,9 @@ board.on("ready", function() {
   ds = milkcocoa.dataStore('messages');
   ds.on('send', function(sended) {
     // console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
-    eval(sended.value.content);
-    // servo.sweep();
+    if (sended.value.title === name){
+      eval(sended.value.content);      
+    }
   });
 
   // ds.send({title : 'command', content : 'servo.to(0);'});// initial
