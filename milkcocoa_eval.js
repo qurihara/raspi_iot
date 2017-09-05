@@ -2,7 +2,10 @@ var name = "raspi-zero-w-1";
 var MilkCocoa = require('milkcocoa');
 
 var five = require("johnny-five");
-var board = new five.Board();
+var Raspi = require("raspi-io");
+var board = new five.Board({
+  io: new Raspi()
+});
 
 board.on("ready", function() {
   // P13 LED blink
