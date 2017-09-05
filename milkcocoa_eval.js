@@ -10,7 +10,7 @@ var board = new five.Board({
 board.on("ready", function() {
   // P13 LED blink
   var led = new five.Led("P1-13");
-  led.blink();
+  led.on();//.blink();
 
   // var servo = new five.Servo(12);
   var servo = new five.Servo({
@@ -31,7 +31,11 @@ board.on("ready", function() {
   ds.on('send', function(sended) {
     // console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
     if (sended.value.title === name){
-      eval(sended.value.content);      
+      try{
+        eval(sended.value.content);        
+      }catch(e){
+
+      }
     }
   });
 
