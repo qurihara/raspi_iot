@@ -4,10 +4,12 @@ var MilkCocoa = require('milkcocoa');
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({
-  io: new Raspi()
+  io: new Raspi(),
+  repl: false
 });
 
 board.on("ready", function() {
+  console.log("board:ready.");
   // P13 LED blink
   var led = new five.Led("P1-13");
   led.on();//.blink();
@@ -27,11 +29,12 @@ board.on("ready", function() {
   var relay = new five.Relay('P1-16');
 
   var listen = function(){
+    console.log("connecting to milkcocoa.");
     led.blink();
     milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
     ds = milkcocoa.dataStore('messages');
     ds.on('send', function(sended) {
-      // console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
+      console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
       if (sended.value.title === name){
         try{
           eval(sended.value.content);
@@ -41,7 +44,7 @@ board.on("ready", function() {
     });
     function send(str){
           ds.send({title : 'id', content : name});
-          // console.log("sent.");
+          console.log("sent.");
     }
     send(name);
   };
