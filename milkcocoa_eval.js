@@ -29,7 +29,7 @@ board.on("ready", function() {
   milkcocoa = new MilkCocoa('woodj2to2ujh.mlkcca.com');
   ds = milkcocoa.dataStore('messages');
   ds.on('send', function(sended) {
-    log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
+    console.log('[message recieved] title: '+sended.value.title+', content: '+sended.value.content);
     eval(sended.value.content);
     // servo.sweep();
   });
